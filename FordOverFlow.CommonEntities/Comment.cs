@@ -14,20 +14,21 @@ namespace FordOverFlow.CommonEntities
     {
         [Required, StringLength(50)]
         public string Text { get; set; }
-        [Required, StringLength(50)]
         public DateTime PublishDate { get; set; }
         public DateTime EditDate { get; set; }
-        public bool IsFavorite { get; set; }
-        public int ReplyTo { get; set; }   //SubComment. Cevaplanan yorumun Id'si. 
-                                           //Sorun çıkarabilir. Farklı bir yaklaşım düşün.
-                                           //İlişkilendirmede SubComment olarak belirtildi
+        public bool? IsFavorite { get; set; }
+        public int? ReplyTo { get; set; }                      //Sub comment ise, ait olduğu top comment'in id'si.             
 
-        public virtual User User { get; set; }
-        public virtual Post Post { get; set; }
 
+        public int commentOwnerID { get; set; }              //Yorumu yapan kişinin İd'si burada tutulabilir ???  
+        public virtual User User { get; set; }               // İlişki Hatası Var. Commentin sahibi ve ait olduğu post aynı anda ilişkilendirilemiyor. => Şimdilik Çözüldü => Detay için DbContext incele
+
+
+        public int ownerPostID { get; set; }
+        public virtual Post Post { get; set; }               
+
+        
         public virtual List<CommentVotes> CommentVotes { get; set; }
-        public virtual List<Comment> SubComment { get; set; }
-
 
 
     }

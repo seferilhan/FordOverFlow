@@ -11,8 +11,10 @@ namespace FordOverFlow.CommonEntities
 
     [Table("User")]
 
-    public class User : CommonProperties
+    public class User 
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int UserID { get; set; }
 
         [Required, StringLength(50)]
         public string Name { get; set; }
@@ -30,14 +32,14 @@ namespace FordOverFlow.CommonEntities
 
 
         //İlişkiler
+        public virtual Department Department { get; set; }
+        public virtual List<Post>? Posts { get; set; }
+        
+        //[ForeignKey]      ?? m - m
+        public virtual List<UserTags>? UserTags { get; set; }
+        public virtual List<Comment>? Comments { get; set; }
+        public virtual List<CommentVotes>? CommentVotes { get; set; }
+        public virtual List<PostVotes>? PostVotes { get; set; }
 
-        public virtual List<Post> Posts { get; set; }
-        public virtual List<Comment> Comments { get; set; }
-        public virtual List<UserDepartments> UserDepartments { get; set; }
-        public virtual List<UserTags> UserTags { get; set; }
-        public virtual List<PostVotes> PostVotes { get; set; }
-        public virtual List<CommentVotes> CommentVotes { get; set; }
-
-         
     }
 }

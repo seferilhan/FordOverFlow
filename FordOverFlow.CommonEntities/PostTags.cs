@@ -8,14 +8,26 @@ using System.Threading.Tasks;
 
 namespace FordOverFlow.CommonEntities
 {
-    public  class PostTags : CommonProperties
+    [Table("PostTags")]
+    public  class PostTags
     {
-        //Tek parametresi ID, commonproperties sınıfından geliyor 
-        //Diğer parametrelerini başka tablolardan ForeignKey olarak alıyor
-        //Sadece ilişkilendirme yapılacak. 
+        //public int PostID { get; set; }
+        //public int TagID { get; set; }
 
+        ////[ForeignKey("PostID")]        ??
+        //public virtual Post Post { get; set; }
+        ////[ForeignKey("TagID")]         ??
+        //public virtual Tags Tags { get; set; }    //İlk Yöntem
+
+        //İkinci Yöntem
+
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int PostTagsID { get; set; }
+
+        public int PostID { get; set; }
         public virtual Post Post { get; set; }
 
-        public virtual List<Tags>Tags { get; set; }
+        public int TagID { get; set; }
+        public virtual Tags Tags { get; set; }
     }
 }

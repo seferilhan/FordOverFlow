@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace FordOverFlow.CommonEntities
 {
-    public class Tags : CommonProperties
+    [Table("Tags")]
+    public class Tags 
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int TagID { get; set; }
+
         [Required, StringLength(50)]
         public string TagName { get; set; }
 

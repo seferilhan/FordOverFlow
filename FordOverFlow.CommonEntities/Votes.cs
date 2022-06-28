@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace FordOverFlow.CommonEntities
 {
+    [Table("Votes")]
     public class Votes : CommonProperties
     {
         [Required, StringLength(50)]

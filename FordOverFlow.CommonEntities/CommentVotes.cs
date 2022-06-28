@@ -8,14 +8,20 @@ using System.Threading.Tasks;
 
 namespace FordOverFlow.CommonEntities
 {
+    [Table("CommentVotes")]
     public class CommentVotes : CommonProperties
     {
         //Tek parametresi ID, commonproperties sınıfından geliyor 
         //Diğer parametrelerini başka tablolardan ForeignKey olarak alıyor
         //Sadece ilişkilendirme yapılacak. 
 
+        public int UserID { get; set; }
         public virtual User User { get; set; }
+
+        public int CommentID { get; set; }
         public virtual Comment Comment { get; set; }
+
+        public int VoteID { get; set; }
         public virtual Votes Vote { get; set; }
 
     }
