@@ -38,5 +38,13 @@ namespace FordOverFlow.Controllers
         {
             return View();
         }
+        public IActionResult Profile()
+        {
+            return View();
+        }
+        public IActionResult SignUp()
+        {
+            return View();
+        }
     }
 }
