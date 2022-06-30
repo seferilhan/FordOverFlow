@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FordOverFlow.DataAccessLayer.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220623182745_Deneme1")]
+    [Migration("20220629135416_Deneme1")]
     partial class Deneme1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
