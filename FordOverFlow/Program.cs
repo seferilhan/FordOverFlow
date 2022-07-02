@@ -1,4 +1,5 @@
 using FordOverFlow.DataAccessLayer;
+using FordOverFlow.DataAccessLayer.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,8 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseContext"));  //connection String
 });
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //builder.Services.AddScoped<DbInitializer>();    //seedleme iþlemi için gerekli initializer servisi
 

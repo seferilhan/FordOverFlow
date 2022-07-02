@@ -33,11 +33,11 @@ namespace FordOverFlow.CommonEntities
 
         //İlişkiler
         public virtual Department Department { get; set; }
-        public virtual List<Post>? Posts { get; set; }
+        public virtual List<Post> Posts { get; set; }
         
         //[ForeignKey]      ?? m - m
-        public virtual List<UserTags>? UserTags { get; set; }
-        public virtual List<Comment>? Comments { get; set; }
+        public virtual List<UserTags> UserTags { get; set; }
+        public virtual List<Comment> Comments { get; set; }
         public virtual List<CommentVotes>? CommentVotes { get; set; }
         public virtual List<PostVotes>? PostVotes { get; set; }
 
