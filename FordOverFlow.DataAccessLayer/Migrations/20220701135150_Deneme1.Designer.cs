@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FordOverFlow.DataAccessLayer.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220629135416_Deneme1")]
+    [Migration("20220701135150_Deneme1")]
     partial class Deneme1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,8 +64,8 @@ namespace FordOverFlow.DataAccessLayer.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("commentOwnerID")
                         .HasColumnType("int");
@@ -120,8 +120,8 @@ namespace FordOverFlow.DataAccessLayer.Migrations
 
                     b.Property<string>("DepartmentName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ID");
 
@@ -142,25 +142,24 @@ namespace FordOverFlow.DataAccessLayer.Migrations
                     b.Property<DateTime>("EditDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsFavorite")
+                    b.Property<bool?>("IsFavorite")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsSolved")
+                    b.Property<bool?>("IsSolved")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("PublishDate")
-                        .HasMaxLength(50)
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
@@ -235,8 +234,8 @@ namespace FordOverFlow.DataAccessLayer.Migrations
 
                     b.Property<string>("TagName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("TagID");
 
@@ -259,7 +258,7 @@ namespace FordOverFlow.DataAccessLayer.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("IsAdmin")
+                    b.Property<bool?>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")

@@ -14,15 +14,14 @@ namespace FordOverFlow.CommonEntities
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PostID { get; set; }
-        [Required, StringLength(50)]
+        [Required, StringLength(500)]
         public string Title { get; set; }
-        [Required, StringLength(50)]
+        [Required, StringLength(500)]
         public string Text { get; set; }
-        [Required, StringLength(50)]
         public DateTime PublishDate { get; set; }
         public DateTime EditDate { get; set; }    
-        public bool IsSolved { get; set; }
-        public bool IsFavorite { get; set; }
+        public bool? IsSolved { get; set; }
+        public bool? IsFavorite { get; set; }
 
 
         //İlişkiler
@@ -37,6 +36,16 @@ namespace FordOverFlow.CommonEntities
         public virtual List<PostVotes> PostVotes { get; set; }
 
 
+        ////23.10
+        //public Post()
+        //{
+        //    Comments = new List<Comment>();
+        //    PostTags = new List<PostTags>();
+        //    PostVotes = new List<PostVotes>();
+
+        //    User = new User();
+        //    Category = new Category();
+        //}
 
     }
 }

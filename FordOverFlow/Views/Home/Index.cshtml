@@ -1,10 +1,13 @@
-﻿ <!-- Page-header start -->
+﻿@using FordOverFlow.CommonEntities 
+@model List<Post>
+
+<!-- Page-header start -->
 <div class="page-header">
     <div class="page-block">
         <div class="row align-items-center">
             <div class="col-md-8">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Homepage</h5>
+                    <h5 class="m-b-10">Questions</h5>
                     <p class="m-b-0">Currently Active Questions</p>
                 </div>
             </div>
@@ -21,91 +24,73 @@
         <div class="page-wrapper">
             <!-- Page-body start -->
             <div class="page-body breadcrumb-page">
-                <!-- Simple Breadcrumb card start -->
-                <div class="card">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-2">
-                                <!--Paylaşıma Ait İstatistikler-->
-                                <center><label class="label label-info">0 Votes</label></center>
-                                
-                                <p><center><label class="label label-info">0 Answers</label></center></p> <!--Cevap Sayısı. Çözüldü ise Yeşil tik??-->
-                                
-                                <center><label class="label label-info">0 Views</label></center> <!--Görüntüleme Sayısı-->
+                @foreach (Post post in Model)
+                { int postVotes = 0;
+                    foreach (var postVote in post.PostVotes)
+                    {
+                        if (postVote.VoteID == 1)
+                        {
+                            postVotes++;
+                        }
+                        else{
+                            postVotes--;
+                        }
+                    }
+
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-2">
+                                    <!--Paylaşıma Ait İstatistikler-->
+                                    @if(postVotes > 0)                           //Label - 1     
+                                    {
+                                        <center><label class="label label-primary">@postVotes Votes</label></center>
+                                    }
+                                    else if (postVotes < 0 )
+                                    {
+                                        <center><label class="label label-danger">@postVotes Votes</label></center>
+                                    }
+                                    else
+                                    {
+                                        <center><label class="label label-info">@postVotes Votes</label></center>
+                                    }
+
+                                    @if(post.Comments.Count > 0)                // Label - 2
+                                    {
+                                        <p><center><label class="label label-primary">@post.Comments.Count Answers</label></center></p>
+                                    }
+                                    else
+                                    {
+                                        <p><center><label class="label label-info">@post.Comments.Count Answers</label></center></p>
+                                    }
+                                    
+                                    @if(post.IsSolved == true)                 //Label - 3
+                                    {
+                                        <center><label class="label label-success"><i class="bi bi-check-lg"></i>Solved</label></center> 
+                                    }
+                                    else
+                                    {
+                                        <center><label class="label label-info"><i class="bi bi-x"></i>Unresolevd</label></center> 
+                                    }
+                                    
                             </div>
                             <div class="col-8">
-                               <center class="text-left"> <a href="#!"><h5>Title</h5></a> </center>                                         <!--Başlık-->
-                              <p><center class="text-left">Lorem Ipsum is simply dummy text of the printing</center>    </p>                  <!--Konu özeti, belki paylaşımdaki ilk 50 karakter??-->
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag1</button>      <!--Tagler-->
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag2</button>
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag3</button>
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag4</button>
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag5</button>
+                               <center class="text-left"> <a href="/Home/SelectedPost/@post.PostID"><h5>@post.Title.Substring(0,20)</h5></a> </center>                                         <!--Başlık-->
+                              <p><center class="text-left">@post.Text.Substring(0,40)</center>    </p>                  <!--Konu özeti, belki paylaşımdaki ilk 50 karakter??-->
+                                    @foreach (var posttag in post.PostTags)
+                                    {
+                                        <button class="btn btn-info btn-sm waves-effect waves-light">@(posttag.Tags.TagName)</button>
+                                    }                                    
                             </div>
                             <div class="col-2">
                                 <br />
                                 <br />
-                                <center><i class="bi bi-person-fill">UserName</i></center>
+                                <center><i class="bi bi-person-fill">@(post.User.Name + " " + post.User.SurName)</i></center>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-2">
-                                <!--Paylaşıma Ait İstatistikler-->
-                                <center><label class="label label-info">-2 Votes</label></center>
-                                
-                                <p><center><label class="label label-primary">2 Answers</label></center></p> <!--Cevap Sayısı. Çözüldü ise Yeşil tik??-->
-                                
-                                <center><label class="label label-info">20 Views</label></center> <!--Görüntüleme Sayısı-->
-                            </div>
-                            <div class="col-8">
-                               <center class="text-left"> <a href="#!"><h5>Title</h5></a> </center>                                         <!--Başlık-->
-                              <p><center class="text-left">Lorem Ipsum is simply dummy text of the printing</center>    </p>                  <!--Konu özeti, belki paylaşımdaki ilk 50 karakter??-->
-                             <button class="btn btn-info btn-sm waves-effect waves-light">Tag1</button>      <!--Tagler-->
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag2</button>
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag3</button>
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag4</button>
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag5</button>
-                            </div>
-                            <div class="col-2">
-                                <br />
-                                <br />
-                                <center><i class="bi bi-person-fill">UserName</i></center>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-2">
-                                <!--Paylaşıma Ait İstatistikler-->
-                                <center><label class="label label-info">10 Votes</label></center>
-                                
-                                <p><center><label class="label label-success"><i class="bi bi-check-lg"></i>2 Answers</label></center></p> <!--Cevap Sayısı. Çözüldü ise Yeşil tik??-->
-                                
-                                <center><label class="label label-info">420 Views</label></center> <!--Görüntüleme Sayısı-->
-                            </div>
-                            <div class="col-8">
-                               <center class="text-left"> <a href="#!"><h5>Title</h5></a> </center>                                         <!--Başlık-->
-                              <p><center class="text-left">Lorem Ipsum is simply dummy text of the printing</center>    </p>                  <!--Konu özeti, belki paylaşımdaki ilk 50 karakter??-->
-                               <button class="btn btn-info btn-sm waves-effect waves-light">Tag1</button>      <!--Tagler-->
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag2</button>
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag3</button>
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag4</button>
-                                <button class="btn btn-info btn-sm waves-effect waves-light">Tag5</button>
-                            </div>
-                            <div class="col-2">
-                                <br />
-                                <br />
-                                <center><i class="bi bi-person-fill">UserName</i></center>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
             <!-- Page-body start -->
         </div>

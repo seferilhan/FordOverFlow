@@ -28,7 +28,7 @@ namespace FordOverFlow.DataAccessLayer.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DepartmentName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    DepartmentName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,7 +41,7 @@ namespace FordOverFlow.DataAccessLayer.Migrations
                 {
                     TagID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TagName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    TagName = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,7 +71,7 @@ namespace FordOverFlow.DataAccessLayer.Migrations
                     SurName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    IsAdmin = table.Column<bool>(type: "bit", nullable: false),
+                    IsAdmin = table.Column<bool>(type: "bit", nullable: true),
                     DepartmentID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -91,12 +91,12 @@ namespace FordOverFlow.DataAccessLayer.Migrations
                 {
                     PostID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PublishDate = table.Column<DateTime>(type: "datetime2", maxLength: 50, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    PublishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EditDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsSolved = table.Column<bool>(type: "bit", nullable: false),
-                    IsFavorite = table.Column<bool>(type: "bit", nullable: false),
+                    IsSolved = table.Column<bool>(type: "bit", nullable: true),
+                    IsFavorite = table.Column<bool>(type: "bit", nullable: true),
                     UserID = table.Column<int>(type: "int", nullable: false),
                     CategoryID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -149,7 +149,7 @@ namespace FordOverFlow.DataAccessLayer.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Text = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     PublishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EditDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsFavorite = table.Column<bool>(type: "bit", nullable: true),

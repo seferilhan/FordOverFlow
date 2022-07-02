@@ -1,0 +1,128 @@
+﻿@using FordOverFlow.CommonEntities
+@model List<Post>
+
+<!-- Page-header start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Questions</h5>
+                    <p class="m-b-0">Currently Active Questions</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary btn-md waves-effect waves-light">Ask Question</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page-header end -->
+
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-body start -->
+            <div class="page-body breadcrumb-page">
+                @foreach (Post post in Model)
+                {
+                    int postVotes = 0;
+                    foreach (var postVote in post.PostVotes)
+                    {
+                        if (postVote.VoteID == 1)
+                        {
+                            postVotes++;
+                        }
+                        else
+                        {
+                            postVotes--;
+                        }
+                    }
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-2">
+                                    <!--Paylaşıma Ait İstatistikler-->
+                                    @*<center><button class="btn btn-primary btn-md waves-effect waves-light">UpVote</button></center>
+                                    <p><center><label class="label label-primary">@(postVotes + " Votes")</label></center></p>
+                                    <center><button class="btn btn-primary btn-md waves-effect waves-light">DownVote</button></center>*@
+                                     
+                                   <center><button class="btn btn-info btn-sm waves-effect waves-light"><i class="bi bi-arrow-up"></i></button></center>
+                                   <br>
+                                   <center><label class="label label-primary">@(postVotes + " Votes")</label></center>
+                                   <br>
+                                   <center><button class="btn btn-info btn-sm waves-effect waves-light"><i class="bi bi-arrow-down"></i></button></center>
+                                    
+
+                                </div>
+                                <div class="col-8">
+                                    <center class="text-left"><h5>@post.Title</h5></center>                                         <!--Başlık-->
+                                    <p><center class="text-left">@post.Text</center>    </p>                  <!--Konu özeti, belki paylaşımdaki ilk 50 karakter??-->
+                                    @foreach (var posttag in post.PostTags)
+                                    {
+                                        <button class="btn btn-info btn-sm waves-effect waves-light">@(posttag.Tags.TagName)</button>
+                                    }
+                                </div>
+                                <div class="col-2">
+                                    <center><i class="bi bi-person-fill">@(post.User.Name + " " + post.User.SurName)</i></center>
+                                    
+                                    <p><center><i class="bi bi-person-fill">@( "Publish Date:" +post.PublishDate)</i></center></p>
+                                    
+                                    <center><i class="bi bi-person-fill">@("Edit Date:" + post.EditDate)</i></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @foreach(var comment in post.Comments)
+                    {
+                        int commentVotes = 0;
+                        foreach (var commentVote in comment.CommentVotes)
+                        {
+                            if (commentVote.VoteID == 1)
+                            {
+                                commentVotes++;
+                            }
+                            else
+                            {
+                                commentVotes--;
+                            }
+                        }
+                        <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-2">
+                                    <!--Paylaşıma Ait İstatistikler-->
+                                    <center><button class="btn btn-info btn-sm waves-effect waves-light"><i class="bi bi-arrow-up"></i></button></center>
+                                   <br>
+                                   <center><label class="label label-primary">@(commentVotes + " Votes")</label></center>
+                                   <br>
+                                   <center><button class="btn btn-info btn-sm waves-effect waves-light"><i class="bi bi-arrow-down"></i></button></center>
+                                </div>
+                                <div class="col-8">
+                                    <p><center class="text-left">@comment.Text</center>   </p>                                       <!--Başlık-->
+                                    @foreach (var posttag in post.PostTags)
+                                    {
+                                        <button class="btn btn-info btn-sm waves-effect waves-light">@(posttag.Tags.TagName)</button>
+                                    }
+                                </div>
+                                <div class="col-2">
+                                    <center><i class="bi bi-person-fill">@(comment.User.Name + " " + comment.User.SurName)</i></center>
+                                    
+                                    <p><center><i class="bi bi-person-fill">@( "Publish Date:" +comment.PublishDate)</i></center></p>
+                                    
+                                    <center><i class="bi bi-person-fill">@("Edit Date:" + comment.EditDate)</i></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                }
+            </div>
+            <!-- Page-body start -->
+        </div>
+    </div>
+    <!-- Main-body start -->
+    <div id="styleSelector">
+    </div>
+</div>

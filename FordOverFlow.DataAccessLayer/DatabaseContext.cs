@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using FordOverFlow.CommonEntities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 
 namespace FordOverFlow.DataAccessLayer
 {
@@ -13,6 +15,15 @@ namespace FordOverFlow.DataAccessLayer
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)        //Lazy - Loading
+        {
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+            optionsBuilder.UseSqlServer(config.GetConnectionString("DatabaseContext"));
+            optionsBuilder.UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
