@@ -14,12 +14,17 @@ namespace FordOverFlow.CommonEntities
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TagID { get; set; }
 
-        [Required, StringLength(50)]
+        [Required, StringLength(500)]
         public string TagName { get; set; }
 
         public virtual List<UserTags> UserTags { get; set; }
         public virtual List<PostTags> PostTags { get; set; }
 
-
+        ////23.10
+        //public Tags()
+        //{
+        //    UserTags = new List<UserTags>();
+        //    PostTags = new List<PostTags>();    
+        //}
     }
 }

@@ -5,7 +5,9 @@ using System.Diagnostics;
 using FordOverFlow.BusinessLayer;
 using FordOverFlow.DataAccessLayer;
 using FordOverFlow.CommonEntities;
+
 using FordOverFlow.DataAccessLayer.UnitOfWork;
+
 
 namespace FordOverFlow.Controllers
 {
@@ -15,6 +17,8 @@ namespace FordOverFlow.Controllers
         private readonly IUnitOfWork unitOfWork;
         private readonly DatabaseContext _db;
 
+
+        PostManager pm = new PostManager();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -33,6 +37,7 @@ namespace FordOverFlow.Controllers
         public IActionResult Index()
         {
 
+
             //Test t = new Test();
             //List<User> user = new List<User>();
             //user = t.GetUsers(_db).ToList();
@@ -41,6 +46,9 @@ namespace FordOverFlow.Controllers
             List<User> user = new List<User>();               
             user = unitOfWork.UserRepository.GetAll().ToList();
             return View(user);
+                   
+            return View(pm.GetAllPosts(_db));
+
         }
 
         public IActionResult Login()
@@ -54,6 +62,10 @@ namespace FordOverFlow.Controllers
         public IActionResult SignUp()
         {
             return View();
+        }
+        public IActionResult SelectedPost(int id)
+        {
+            return View(pm.SelectPost(_db, id));
         }
     }
 }

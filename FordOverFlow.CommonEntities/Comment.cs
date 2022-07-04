@@ -12,7 +12,7 @@ namespace FordOverFlow.CommonEntities
 
     public class Comment : CommonProperties
     {
-        [Required, StringLength(50)]
+        [Required, StringLength(500)]
         public string Text { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime EditDate { get; set; }
@@ -30,6 +30,12 @@ namespace FordOverFlow.CommonEntities
         
         public virtual List<CommentVotes> CommentVotes { get; set; }
 
-
+        ////23.10
+        //public Comment()
+        //{
+        //    CommentVotes = new List<CommentVotes>();
+        //    User = new User();
+        //    Post = new Post();
+        //}
     }
 }

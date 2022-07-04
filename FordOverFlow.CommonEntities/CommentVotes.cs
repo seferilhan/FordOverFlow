@@ -24,5 +24,12 @@ namespace FordOverFlow.CommonEntities
         public int VoteID { get; set; }
         public virtual Votes Vote { get; set; }
 
+        ////23.10
+        //public CommentVotes()
+        //{
+        //    User = new User();
+        //    Comment = new Comment();
+        //    Vote = new Votes();
+        //}
     }
 }

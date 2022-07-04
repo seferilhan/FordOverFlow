@@ -28,7 +28,7 @@ namespace FordOverFlow.CommonEntities
         [Required, StringLength(50)]
         public string Password { get; set; }   // Guid olması gerekiyor. Araştır
 
-        public bool IsAdmin { get; set; }
+        public bool? IsAdmin { get; set; }
 
 
         //İlişkiler
@@ -38,8 +38,24 @@ namespace FordOverFlow.CommonEntities
         //[ForeignKey]      ?? m - m
         public virtual List<UserTags> UserTags { get; set; }
         public virtual List<Comment> Comments { get; set; }
-        public virtual List<CommentVotes>? CommentVotes { get; set; }
-        public virtual List<PostVotes>? PostVotes { get; set; }
+
+        public virtual List<CommentVotes> CommentVotes { get; set; }
+        public virtual List<PostVotes> PostVotes { get; set; }
+
+
+        ////23.10
+        //public User()
+        //{
+        //    UserTags = new List<UserTags>();
+        //    Comments = new List<Comment>();
+        //    CommentVotes = new List<CommentVotes>();
+        //    PostVotes = new List<PostVotes>();
+
+        //    //
+        //    Department = new Department();
+        //    Posts = new List<Post>();
+        //}
+
 
     }
 }

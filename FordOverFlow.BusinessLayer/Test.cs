@@ -10,8 +10,6 @@ namespace FordOverFlow.BusinessLayer
 {
     public class Test
     {
-        
-
         private Repository<User> user = new Repository<User>();
 
         public List<User> GetUsers(DatabaseContext _db)

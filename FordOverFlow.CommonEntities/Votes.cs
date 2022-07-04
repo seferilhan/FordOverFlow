@@ -17,5 +17,13 @@ namespace FordOverFlow.CommonEntities
 
         public virtual List<PostVotes> PostVotes { get; set; }
         public virtual List<CommentVotes> CommentVotes { get; set; }
+
+        //23.10
+
+        //public Votes()
+        //{
+        //    PostVotes = new List<PostVotes>();
+        //    CommentVotes = new List<CommentVotes>();    
+        //}
     }
 }

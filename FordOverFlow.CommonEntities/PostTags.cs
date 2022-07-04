@@ -29,5 +29,11 @@ namespace FordOverFlow.CommonEntities
 
         public int TagID { get; set; }
         public virtual Tags Tags { get; set; }
+
+        //public PostTags()
+        //{
+        //    Post = new Post();
+        //    Tags = new Tags();
+        //}
     }
 }

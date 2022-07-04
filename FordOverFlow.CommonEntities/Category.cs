@@ -16,5 +16,11 @@ namespace FordOverFlow.CommonEntities
                                                 //Soru, paylaşım, bestpractice vb. vb. vb.
 
         public virtual List<Post> Post { get; set; }
+
+        ////23.10
+        //public Category()
+        //{
+        //    Post = new List<Post>();
+        //}
     }
 }
