@@ -38,6 +38,7 @@ namespace FordOverFlow.CommonEntities
         //[ForeignKey]      ?? m - m
         public virtual List<UserTags> UserTags { get; set; }
         public virtual List<Comment> Comments { get; set; }
+
         public virtual List<CommentVotes> CommentVotes { get; set; }
         public virtual List<PostVotes> PostVotes { get; set; }
 
@@ -54,6 +55,7 @@ namespace FordOverFlow.CommonEntities
         //    Department = new Department();
         //    Posts = new List<Post>();
         //}
+
 
     }
 }
