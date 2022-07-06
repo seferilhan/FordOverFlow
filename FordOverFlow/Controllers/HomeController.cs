@@ -13,41 +13,19 @@ namespace FordOverFlow.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> logger;
-        private readonly IUnitOfWork unitOfWork;
-        private readonly DatabaseContext _db;
+        private readonly IService service;
 
 
-        PostManager pm = new PostManager();
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        
-        public HomeController(DatabaseContext db, ILogger<HomeController> _logger, IUnitOfWork _unitOfWork)           //Db burda olmamalı. Katmanlı mimari uygun değil. Çözüm bul
+        public HomeController(IService service)          
         {                                                   
-            _db = db;
-            logger = _logger;
-            unitOfWork = _unitOfWork;
+
+            this.service = service;
         }
 
         public IActionResult Index()
         {
 
-
-            //Test t = new Test();
-            //List<User> user = new List<User>();
-            //user = t.GetUsers(_db).ToList();
-            //return View(user);
-
-            List<User> user = new List<User>();               
-            user = unitOfWork.UserRepository.GetAll().ToList();
-            return View(user);
-                   
-            return View(pm.GetAllPosts(_db));
+            return View(service.GetAllPosts());
 
         }
 
@@ -65,7 +43,20 @@ namespace FordOverFlow.Controllers
         }
         public IActionResult SelectedPost(int id)
         {
-            return View(pm.SelectPost(_db, id));
+            return View(service.ShowSelectedPost(id));
+        }
+
+        public IActionResult AskQuestion()
+        {
+            return View();
+        }
+        public IActionResult SearchTag()
+        {
+            return View();
+        }
+        public IActionResult SearchUser()
+        {
+            return View();
         }
     }
 }

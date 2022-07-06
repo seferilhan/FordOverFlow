@@ -1,5 +1,7 @@
 ﻿using FordOverFlow.CommonEntities;
+using FordOverFlow.DataAccessLayer.Interface;
 using FordOverFlow.DataAccessLayer.Repository;
+using FordOverFlow.DataAccessLayer.Repository.EntityRepository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,29 +14,25 @@ namespace FordOverFlow.DataAccessLayer.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IConfiguration configuration;
-        private readonly DatabaseContext context;
-        private readonly ILogger logger;
-
-        public IGenericRepository<User> UserRepository {get; private set;}
-
-        public UnitOfWork(DatabaseContext _context, ILoggerFactory _logger, IConfiguration _config)
+        private DatabaseContext context;
+        public UnitOfWork(DatabaseContext context)
         {
-            context = _context;
-            logger = _logger.CreateLogger("Log");
-            configuration = _config;
-
-            UserRepository = new GenericRepository<User>(context, logger);
+            this.context = context;
+            Post = new PostRepository(this.context);
+            User = new UserRepository(this.context);
         }
+
+        public IUserRepository User { get; set; }
+        public IPostRepository Post { get; set; }
 
         public void Dispose()
         {
             context.Dispose();
         }
 
-        public void Save()
+        public int Save()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
     }
 }

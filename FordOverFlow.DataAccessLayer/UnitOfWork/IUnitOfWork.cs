@@ -1,4 +1,5 @@
 ﻿using FordOverFlow.CommonEntities;
+using FordOverFlow.DataAccessLayer.Interface;
 using FordOverFlow.DataAccessLayer.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,9 @@ namespace FordOverFlow.DataAccessLayer.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<User> UserRepository { get; }
+        IUserRepository User { get; } 
+        IPostRepository Post { get; }
 
-        void Save();
+        int Save();
     }
 }
